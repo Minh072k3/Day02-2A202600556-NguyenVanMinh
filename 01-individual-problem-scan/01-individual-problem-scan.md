@@ -17,7 +17,7 @@ Nhóm dự án OD Labeling đang gặp khó khăn trong việc quản lý, tìm 
 
 # TOP 3 PROBLEMS — OD Labeling Project
 
-| Rank | Problem                                                                                | Vì sao chọn                                                | Điều còn chưa chắc                          
+| Rank | Problem                                                                                | Vì sao chọn                                                | Điều còn chưa chắc  |                        
 | ---- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------- | -------------------- |
 | 1    | Tìm lại quyết định labeling cho edge case từng được tranh luận trong Slack hoặc Notion | Workflow rõ, pain thật, AI fit mạnh nhất, dễ làm pilot nhỏ | Semantic search có đủ chính xác không       |
 | 2    | QA khó phát hiện các object bị annotator bỏ sót trong frame đông                       | Impact trực tiếp lên chất lượng dataset và reject rate     | False positive và độ chính xác model        |
