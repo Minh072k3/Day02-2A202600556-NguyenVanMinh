@@ -1,4 +1,5 @@
 Case: **Gán Nhãn Dữ Liệu**
+
 Nhóm dự án OD Labeling đang gặp khó khăn trong việc quản lý, tìm kiếm và đảm bảo chất lượng dữ liệu gán nhãn do workflow thủ công, guideline phức tạp và thông tin quyết định bị phân tán trên nhiều công cụ như Slack, Docs và labeling platform.
 
 
@@ -14,3 +15,128 @@ Nhóm dự án OD Labeling đang gặp khó khăn trong việc quản lý, tìm 
 | 8 | Pain từ người khác | Annotator mới liên tục hỏi lại rule occlusion dù guideline đã có sẵn                                          | Team Lead                | Bị interrupt nhiều lần mỗi ngày                            |
 | 9 | Pain từ người khác | Cả batch bị khách reject vì team hiểu sai một guideline mới cập nhật                                          | PM, Toàn team            | Phải rework số lượng lớn dữ liệu trước deadline            |
 
+# TOP 3 PROBLEMS — OD Labeling Project
+
+| Rank | Problem                                                                                | Vì sao chọn                                                | Điều còn chưa chắc                          | Quick Gut            |
+| ---- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------- | -------------------- |
+| 1    | Tìm lại quyết định labeling cho edge case từng được tranh luận trong Slack hoặc Notion | Workflow rõ, pain thật, AI fit mạnh nhất, dễ làm pilot nhỏ | Semantic search có đủ chính xác không       | Workflow             |
+| 2    | QA khó phát hiện các object bị annotator bỏ sót trong frame đông                       | Impact trực tiếp lên chất lượng dataset và reject rate     | False positive và độ chính xác model        | Workflow + AI Vision |
+| 3    | Annotator mới liên tục hỏi lại rule occlusion dù guideline đã có sẵn                   | Pain lặp lại hằng ngày, dễ validate và scope phù hợp lab   | Guideline có đủ rõ để AI trả lời đúng không | Workflow             |
+
+---
+
+# TOP 1 — Problem Card
+
+## Problem 1 câu
+
+Annotator và Team Lead mất nhiều thời gian tìm lại quyết định labeling cho các edge case vì thông tin nằm rải rác trên Slack, Notion và guideline docs.
+
+## Actor
+
+* Annotator
+* QA Reviewer
+* Team Lead
+
+## Thời điểm / bối cảnh
+
+Khi gặp edge case chưa chắc cách labeling đúng, team phải tìm lại quyết định cũ trước khi tiếp tục annotate hoặc QA.
+
+## Current workflow
+
+1. Annotator gặp edge case
+2. Search keyword trên Slack/Notion
+3. Đọc nhiều thread hoặc guideline liên quan
+4. Ping Team Lead nếu vẫn chưa chắc
+5. Team Lead giải thích lại hoặc tìm decision cũ
+6. Annotator tiếp tục labeling
+
+## Bottleneck
+
+Bước đọc lại thread dài và tìm kết luận cuối cùng mất khoảng 10–15 phút/lần.
+
+## Impact
+
+* Giảm tốc độ labeling
+* Interrupt Team Lead nhiều lần/ngày
+* Dễ hiểu sai guideline nếu tìm nhầm thread
+
+## Success metric
+
+* Giảm thời gian tìm decision từ 10–15 phút xuống dưới 2 phút
+* Giảm số lần hỏi lại Team Lead
+* Giảm lỗi labeling do hiểu sai edge case
+
+## Non-AI alternative
+
+* Pin message
+* Tag thread
+* Viết FAQ guideline
+
+## AI hypothesis
+
+AI semantic search + summarize có thể retrieve đúng discussion và tóm tắt kết luận cuối cùng theo context.
+
+## Quick gut
+
+Workflow
+
+---
+
+# Draft Workflow — Current State
+
+```text
+CURRENT STATE — 10~15 phút/lần
+
+[Annotator gặp edge case]
+        ↓
+[Search keyword trên Slack]
+        ↓
+[Đọc nhiều thread]
+        ↓
+[Search thêm trên Notion]
+        ↓
+[Không chắc kết luận]
+        ↓
+[Ping Team Lead]
+        ↓
+[Lead giải thích lại]
+        ↓
+[Tiếp tục labeling]
+```
+
+---
+
+# Draft Workflow — Future State
+
+```text
+FUTURE STATE — dưới 2 phút/lần
+
+[Annotator gặp edge case]
+        ↓
+[AI semantic search]
+        ↓
+[AI summarize decision + guideline liên quan]
+        ↓
+[Annotator xác nhận]
+        ↓
+[Tiếp tục labeling]
+
+Fallback:
+Nếu confidence thấp → hỏi Team Lead
+```
+
+---
+
+# Vì sao chọn case này làm bài chính
+
+* Có workflow rõ nhất
+* Có bottleneck cụ thể
+* Có metric đo được
+* Có human boundary rõ
+* Không cần build CV model phức tạp
+* Dễ so sánh:
+
+  * Rule
+  * Workflow
+  * Agent
+* Dễ validate nhanh với team labeling thật
