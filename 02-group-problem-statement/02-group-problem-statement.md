@@ -189,7 +189,7 @@ Vì sao:
 | Mức chọn | Workflow: collect dữ liệu đa nguồn bằng rule/integration, AI phân loại & draft digest/reminder, học viên review và hành động. |
 | Rủi ro & người thật kiểm tra | Risk: AI summarize sai context, bỏ sót thông báo quan trọng hoặc ưu tiên sai deadline. Người thật kiểm tra: học viên phải review digest và có thể mở lại nguồn gốc để xác minh. |
 
-**Final decision**
+### **Final decision**
 
 **Decision:**
 
