@@ -17,17 +17,17 @@ Nhóm dự án OD Labeling đang gặp khó khăn trong việc quản lý, tìm 
 
 # TOP 3 PROBLEMS — OD Labeling Project
 
-| Rank | Problem                                                                                | Vì sao chọn                                                | Điều còn chưa chắc                          | Quick Gut            |
+| Rank | Problem                                                                                | Vì sao chọn                                                | Điều còn chưa chắc                          
 | ---- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------- | -------------------- |
-| 1    | Tìm lại quyết định labeling cho edge case từng được tranh luận trong Slack hoặc Notion | Workflow rõ, pain thật, AI fit mạnh nhất, dễ làm pilot nhỏ | Semantic search có đủ chính xác không       | Workflow             |
-| 2    | QA khó phát hiện các object bị annotator bỏ sót trong frame đông                       | Impact trực tiếp lên chất lượng dataset và reject rate     | False positive và độ chính xác model        | Workflow + AI Vision |
-| 3    | Annotator mới liên tục hỏi lại rule occlusion dù guideline đã có sẵn                   | Pain lặp lại hằng ngày, dễ validate và scope phù hợp lab   | Guideline có đủ rõ để AI trả lời đúng không | Workflow             |
+| 1    | Tìm lại quyết định labeling cho edge case từng được tranh luận trong Slack hoặc Notion | Workflow rõ, pain thật, AI fit mạnh nhất, dễ làm pilot nhỏ | Semantic search có đủ chính xác không       |
+| 2    | QA khó phát hiện các object bị annotator bỏ sót trong frame đông                       | Impact trực tiếp lên chất lượng dataset và reject rate     | False positive và độ chính xác model        |
+| 3    | Annotator mới liên tục hỏi lại rule occlusion dù guideline đã có sẵn                   | Pain lặp lại hằng ngày, dễ validate và scope phù hợp lab   | Guideline có đủ rõ để AI trả lời đúng không | 
 
 ---
 
 # TOP 1 — Problem Card
 
-## Problem 1 câu
+## Bài toán 1 câu
 
 Annotator và Team Lead mất nhiều thời gian tìm lại quyết định labeling cho các edge case vì thông tin nằm rải rác trên Slack, Notion và guideline docs.
 
@@ -126,17 +126,3 @@ Nếu confidence thấp → hỏi Team Lead
 ```
 
 ---
-
-# Vì sao chọn case này làm bài chính
-
-* Có workflow rõ nhất
-* Có bottleneck cụ thể
-* Có metric đo được
-* Có human boundary rõ
-* Không cần build CV model phức tạp
-* Dễ so sánh:
-
-  * Rule
-  * Workflow
-  * Agent
-* Dễ validate nhanh với team labeling thật
