@@ -1,29 +1,22 @@
-## **Group convergence**
+# Group convergence
 
-| Cluster | Candidate examples | Pattern chung |
-| --- | --- | --- |
-| Chuẩn hóa dữ liệu phi cấu trúc & Tra cứu danh mục |   **• Hạnh #1**: BOQ khách → đầu mục chuẩn + spec.
-  • **Hạnh #3**: BOQ đa ngôn ngữ → bản dịch tiếng Việt chuyên ngành.
-  • **Minh #1**: Tìm lại quyết định labeling cho edge case từ Slack/Notion. |   • **Bản chất**: Tiếp nhận đầu vào nhiễu, nhiều format (file BOQ, đoạn chat, đa ngôn ngữ) và cần "đưa về một mối" chuẩn chỉnh.
-  • **Giải pháp**: Phối hợp LLM/Agent để đọc hiểu ngữ cảnh + hệ thống Lookup/Semantic Search để đối chiếu với nguồn dữ liệu gốc (Master data/Guideline/Từ điển chuyên ngành). |
-| Gom tụ & Đồng bộ thông tin đa kênh |   **• Khôi #1**: Học viên bị quá tải thông tin do rải rác đa kênh (Zalo, Discord, Teams...).
-  • **Khôi #3**: Trích xuất task và context từ biên bản họp nhóm (nói đè chữ, lan man). |   **• Bản chất**: Bài toán "nhiều nguồn, một đích". Thông tin bị phân mảnh theo thời gian thực và bất đối xứng về định dạng (văn bản đa kênh, giọng nói họp online).
-  • **Giải pháp**: Xây dựng **Workflow/Pipeline kết nối** (Webhooks, STT) để thu thập dữ liệu liên tục, sau đó dùng LLM để **tóm tắt, phân loại và đồng bộ** về một dashboard tập trung. |
-| Trợ lý hỗ trợ & Kiểm định tự động |   **• Minh #2**: QA phát hiện object bị bỏ sót trong frame đông.
-  • **Minh #3**: Giải đáp rule occlusion cho annotator mới dựa trên guideline.
-  • **Khôi #2**: Hỗ trợ fix lỗi setup môi trường chạy code khi TA quá tải. |   **• Bản chất**: Giải tỏa điểm nghẽn (bottleneck) trong vận hành hàng ngày bằng cách tự động hóa khâu kiểm tra hoặc trả lời lặp đi lặp lại.**Giải pháp**: Chia làm 2 nhánh rõ rệt:
-  1. **Computer Vision (Model-based)** để quét và phát hiện lỗi sót (Minh #2).
-  2. **RAG/Knowledge Base** (Khôi #2, Minh #3) để "nuốt" guideline/lịch sử lỗi hệ điều hành và giải đáp tức thì cho user. |
-| Tính toán công thức cố định |   **• Hạnh #2**: Tra catalog + tính công thức giá. |   • **Bản chất**: Bài toán thuần logic, yêu cầu độ chính xác tuyệt đối 100%, không chấp nhận sự "ảo giác" (hallucination) của AI.
-  • **Giải pháp**: Cô lập hoàn toàn khỏi LLM. Sử dụng Rule-based/Hard-coded (Engine tính toán truyền thống) để dễ bảo trì và đảm bảo tính nhất quán. |
+| Cluster                                            | Candidate examples                                                                                                                                                                         | Pattern chung                                                                                                                                                                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chuẩn hóa dữ liệu phi cấu trúc & Tra cứu thông tin | • Hạnh #1: BOQ khách → đầu mục chuẩn + spec  <br> • Hạnh #3: BOQ đa ngôn ngữ → bản dịch tiếng Việt chuyên ngành  <br> • Minh #1: Tìm lại quyết định labeling cho edge case từ Slack/Notion | **Bản chất:** Đầu vào phân tán, nhiều format, khó tra cứu nhanh.  <br><br> **Giải pháp:** Kết hợp LLM + semantic search/lookup để đọc hiểu context và truy xuất đúng thông tin từ guideline, tài liệu hoặc discussion cũ.                       |
+| Gom tụ & Đồng bộ thông tin đa kênh                 | • Khôi #1: Học viên bị quá tải thông tin do rải rác đa kênh  <br> • Khôi #3: Trích xuất task và context từ biên bản họp nhóm                                                               | **Bản chất:** Thông tin bị phân tán trên nhiều nền tảng và cập nhật liên tục theo thời gian thực.  <br><br> **Giải pháp:** Workflow/pipeline thu thập dữ liệu đa nguồn → AI phân loại → AI tóm tắt → hiển thị tập trung.                        |
+| Trợ lý hỗ trợ & Kiểm định tự động                  | • Minh #2: QA phát hiện object bị bỏ sót trong frame đông  <br> • Minh #3: Giải đáp rule occlusion cho annotator mới  <br> • Khôi #2: Hỗ trợ fix lỗi setup môi trường chạy code            | **Bản chất:** Giảm bottleneck do con người phải kiểm tra hoặc trả lời lặp lại nhiều lần.  <br><br> **Giải pháp:**  <br> 1. Computer Vision để phát hiện lỗi/missing object.  <br> 2. RAG/Knowledge Base để trả lời guideline hoặc lỗi kỹ thuật. |
+| Tính toán công thức cố định                        | • Hạnh #2: Tra catalog + tính công thức giá                                                                                                                                                | **Bản chất:** Bài toán logic cố định, cần độ chính xác cao và deterministic.  <br><br> **Giải pháp:** Rule-based engine hoặc hard-code thay vì dùng LLM để tránh hallucination.                                                                 |
 
-### **Shortlist và score**
+---
 
-| Candidate | Actor rõ | Workflow rõ | Pain có evidence | Impact đo được | Làm trong lab | So sánh R/W/A được | Nhóm hiểu domain | Tổng |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BOQ khách → đầu mục chuẩn + spec | 5 | 5 | 4 | 4 | 1 | 5 | 5 | 29 |
-| **Học viên bị quá tải thông tin khóa học do rải rác trên quá nhiều kênh** (Zalo, Discord, Teams, Outlook). | 5 | 5 | 4 | 5 | 5 | 5 | 5 | 34 |
-| Tìm lại quyết định labeling cho edge case từng được tranh luận trong Slack hoặc Notion | 5 | 5 | 4 | 4 | 5 | 4 | 5 | 32 |
+# Shortlist và score
+
+| Candidate                                                         | Actor rõ | Workflow rõ | Pain có evidence | Impact đo được | Làm trong lab | So sánh R/W/A được | Nhóm hiểu domain | Tổng |
+| ----------------------------------------------------------------- | -------- | ----------- | ---------------- | -------------- | ------------- | ------------------ | ---------------- | ---- |
+| BOQ khách → đầu mục chuẩn + spec                                  | 5        | 5           | 4                | 4              | 1             | 5                  | 5                | 29   |
+| Học viên bị quá tải thông tin khóa học do rải rác trên nhiều kênh | 5        | 5           | 4                | 5              | 5             | 5                  | 5                | 34   |
+| Tìm lại quyết định labeling cho edge case từ Slack/Notion         | 5        | 5           | 4                | 4              | 5             | 4                  | 5                | 32   |
+
 
 Nhóm chọn: **Học viên bị quá tải thông tin khóa học do rải rác trên quá nhiều kênh** (Zalo, Discord, Teams, Outlook).
 
